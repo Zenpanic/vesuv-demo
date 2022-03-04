@@ -1,7 +1,9 @@
-import { TextField } from '@mui/material'
 import React, { useState } from 'react'
 
-export default function Movies() {
+import { TextField } from '@mui/material'
+
+export default function AddMovie() {
   const [movie, setMovie] = useState('')
+
   return <TextField />
 }
