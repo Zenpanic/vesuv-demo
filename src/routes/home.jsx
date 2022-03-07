@@ -16,6 +16,7 @@ import {
 import AppContext from '../lib/context'
 
 import ListPaper from '../components/ListPaper'
+import { MusicNoteOutlined } from '@mui/icons-material'
 
 export default function Home() {
   const { movies, games, musics } = useContext(AppContext)
@@ -32,33 +33,36 @@ export default function Home() {
 
   const averageMovies = useMemo(() => {
     if (movies.length < 1) return 1
-    let grade
+    let grade = 0
+    let item
     for (item of movies) {
       grade += item.score
     }
-    return (grade / movies.length)
+    return Math.round(grade / movies.length)
   }, [movies])
 
   const averageGames = useMemo(() => {
     if (games.length < 1) return 1
-    let grade
+    let grade = 0
+    let item
     for (item of games) {
       grade += item.score
     }
-    return (grade / games.length)
+    return Math.round(grade / games.length)
   }, [games])
 
   const averageMusics = useMemo(() => {
     if (musics.length < 1) return 1
-    let grade
+    let grade = 0
+    let item
     for (item of musics) {
       grade += item.score
     }
-    return (grade / musics.length)
+    return Math.round(grade / musics.length)
   }, [musics])
 
   return (
-    <Box>
+    <Stack sx={{ height: 600 }}>
       <Stack spacing={2} justifyContent="center" alignItems="stretch">
         <Typography
           gutterBottom
@@ -105,6 +109,6 @@ export default function Home() {
           Aide
         </Button>
       </Stack>
-    </Box>
+    </Stack>
   )
 }

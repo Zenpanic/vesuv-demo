@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from 'react'
 
 import { DataGrid } from '@mui/x-data-grid'
-import { Typography, Box } from '@mui/material'
+import { Typography } from '@mui/material'
 
 import AppContext from '../lib/context'
 
@@ -49,8 +49,6 @@ export default function Presentation({ data, label }) {
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
-        checkboxSelection
-        disableSelectionOnClick
       />
     </div>
   )

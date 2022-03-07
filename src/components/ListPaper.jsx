@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Typography, Button, Stack } from '@mui/material'
+import { Typography, Button, Stack, Rating } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+
+import LocalMoviesOutlinedIcon from '@mui/icons-material/LocalMoviesOutlined'
+import LibraryMusicOutlinedIcon from '@mui/icons-material/LibraryMusicOutlined'
+import GamesOutlinedIcon from '@mui/icons-material/GamesOutlined'
 
 const theme = createTheme({
   palette: {
@@ -44,22 +48,30 @@ export default function ListPaper({ label, list, grade }) {
     <ThemeProvider theme={theme}>
       <Button variant="outlined" onClick={() => goToPage(label)}>
         <Stack>
-          <Typography
-            sx={{ fontSize: 22, fontWeight: 600 }}
-            align="center"
-            padding={1}
-            color="primary"
-          >
-            {`${collection} ${label}`}
-          </Typography>
+          <Stack direction="row" alignItems="center" justifyContent="center">
+            <Typography
+              sx={{ fontSize: 22, fontWeight: 600 }}
+              align="center"
+              padding={1}
+              color="primary"
+            >
+              {collection}
+            </Typography>
+            {label === 'films' ? <LocalMoviesOutlinedIcon /> : null}
+            {label === 'jeux' ? <GamesOutlinedIcon /> : null}
+            {label === 'albums' ? <LibraryMusicOutlinedIcon /> : null}
+          </Stack>
+          <Stack direction="row" alignItems="center" justifyContent="center">
           <Typography
             sx={{ fontSize: 18, fontWeight: 500 }}
             align="center"
             padding={1}
             color="secondary"
           >
-            Note moyenne: {grade}/5
+            Moyenne:
           </Typography>
+          {grade ? <Rating name="read-only" value={grade} readOnly /> : null}
+          </Stack>
         </Stack>
       </Button>
     </ThemeProvider>

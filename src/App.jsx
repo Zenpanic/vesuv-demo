@@ -22,7 +22,7 @@ export default function App() {
 
   const [query, setQuery] = useState('')
 
-  const changeQuery = value => {
+  const changeQuery = (value) => {
     setQuery(value)
   }
 
@@ -78,7 +78,9 @@ export default function App() {
   }
 
   return (
-    <AppContext.Provider value={{ movies, games, musics, dispatchEvent, query, changeQuery }}>
+    <AppContext.Provider
+      value={{ movies, games, musics, dispatchEvent, query, changeQuery }}
+    >
       <Menubar />
       <Container maxWidth="sm">
         <Outlet />

@@ -73,7 +73,7 @@ export default function Menubar() {
     setOpen(false)
   }
 
-  const {query, changeQuery} = useContext(AppContext)  
+  const { query, changeQuery } = useContext(AppContext)
 
   return (
     <ThemeProvider theme={globalTheme}>
@@ -98,9 +98,7 @@ export default function Menubar() {
             >
               Demo Vesuv - React + MUI
             </Typography>
-            <Search
-            value={query}
-            onChange={(e) => changeQuery(e.target.value)}>
+            <Search value={query} onChange={(e) => changeQuery(e.target.value)}>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
