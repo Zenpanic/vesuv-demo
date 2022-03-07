@@ -1,3 +1,11 @@
+import React, { useContext } from 'react'
+
+import Presentation from '../components/Presentation'
+
+import AppContext from '../lib/context'
+
 export default function Musics() {
-  return <h1>COUCOU</h1>
+  const { musics } = useContext(AppContext)
+
+  return <Presentation data={[...musics]} label="Albums" />
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 
 import { createTheme, ThemeProvider, styled, alpha } from '@mui/material/styles'
 import AppBar from '@mui/material/AppBar'
@@ -7,8 +7,12 @@ import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import Typography from '@mui/material/Typography'
 import InputBase from '@mui/material/InputBase'
-import MenuIcon from '@mui/icons-material/Menu'
+import AddIcon from '@mui/icons-material/Add'
 import SearchIcon from '@mui/icons-material/Search'
+
+import AddElement from './AddElement'
+
+import AppContext from '../lib/context'
 
 const globalTheme = createTheme({
   palette: {
@@ -64,6 +68,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 export default function Menubar() {
+  const [open, setOpen] = useState(false)
+  const handleClose = () => {
+    setOpen(false)
+  }
+
+  const {query, changeQuery} = useContext(AppContext)  
+
   return (
     <ThemeProvider theme={globalTheme}>
       <Box sx={{ flexGrow: 1 }}>
@@ -73,10 +84,11 @@ export default function Menubar() {
               size="large"
               edge="start"
               color="inherit"
-              aria-label="open drawer"
+              aria-label="add element"
               sx={{ mr: 2 }}
+              onClick={() => setOpen(!open)}
             >
-              <MenuIcon />
+              <AddIcon />
             </IconButton>
             <Typography
               variant="h6"
@@ -86,7 +98,9 @@ export default function Menubar() {
             >
               Demo Vesuv - React + MUI
             </Typography>
-            <Search>
+            <Search
+            value={query}
+            onChange={(e) => changeQuery(e.target.value)}>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
@@ -97,6 +111,7 @@ export default function Menubar() {
             </Search>
           </Toolbar>
         </AppBar>
+        <AddElement open={open} handleClose={handleClose} />
       </Box>
     </ThemeProvider>
   )

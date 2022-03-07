@@ -1,12 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-import AddMovie from '../components/AddMovie'
+import Presentation from '../components/Presentation'
+
+import AppContext from '../lib/context'
 
 export default function Movies() {
-  return (
-    <>
-      <h1>Coucou</h1>
-      {/* <AddMovie /> */}
-    </>
-  )
+  const { movies } = useContext(AppContext)
+
+  return <Presentation data={[...movies]} label="Films" />
 }

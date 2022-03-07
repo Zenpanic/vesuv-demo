@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Typography, Button, Stack } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
@@ -13,19 +14,36 @@ const theme = createTheme({
   },
 })
 
-export default function ListPaper({ label, list }) {
+export default function ListPaper({ label, list, grade }) {
   const [collection, setCollection] = useState(0)
+
+  const navigate = useNavigate()
+
+  const goToPage = (page) => {
+    if (page !== 'films' && page !== 'jeux' && page !== 'albums') return
+    let adresse
+    if (page === 'films') {
+      adresse = 'movies'
+    }
+    if (page === 'albums') {
+      adresse = 'musics'
+    }
+    if (page === 'jeux') {
+      adresse = 'games'
+    }
+    navigate(`${adresse}`)
+  }
 
   useEffect(() => {
     if (list?.length) {
       setCollection(list.length)
     }
-  }, [])
+  }, [list])
 
   return (
     <ThemeProvider theme={theme}>
-      <Button variant="outlined">
-      <Stack>
+      <Button variant="outlined" onClick={() => goToPage(label)}>
+        <Stack>
           <Typography
             sx={{ fontSize: 22, fontWeight: 600 }}
             align="center"
@@ -40,9 +58,9 @@ export default function ListPaper({ label, list }) {
             padding={1}
             color="secondary"
           >
-            Note moyenne: 5/5
+            Note moyenne: {grade}/5
           </Typography>
-          </Stack>
+        </Stack>
       </Button>
     </ThemeProvider>
   )
