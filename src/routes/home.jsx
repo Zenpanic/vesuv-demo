@@ -58,7 +58,7 @@ export default function Home() {
   }, [musics])
 
   return (
-    <>
+    <Box>
       <Stack spacing={2} justifyContent="center" alignItems="stretch">
         <Typography
           gutterBottom
@@ -105,6 +105,6 @@ export default function Home() {
           Aide
         </Button>
       </Stack>
-    </>
+    </Box>
   )
 }
