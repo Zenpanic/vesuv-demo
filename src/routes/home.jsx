@@ -94,7 +94,7 @@ export default function Home() {
       </Stack>
       <Stack
         alignItems="center"
-        sx={{ position: 'fixed', bottom: 70, right: 10 }}
+        sx={{ position: 'fixed', bottom: 70, right: 20 }}
       >
         <Button
           variant="contained"
